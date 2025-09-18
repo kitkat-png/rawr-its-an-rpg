@@ -89,6 +89,149 @@ def animal_interaction():
         elif interact_with_animal == "c":
             print("You ignore the " + which_animal + " and move on.")
 
+def tablet():
+    """Has interactions for playing on your tablet (aka minigames)"""
+
+    print("You get your tablet out of your bag.")
+    print("There are three games to choose from.")
+    print("A. guess the number")
+    print("B. personality quiz")
+    print("Which one do you wanna play?")
+
+    chosen_game = input("> ")
+    chosen_game = chosen_game.strip()
+    chosen_game = chosen_game.lower()
+
+    if chosen_game == "a":
+        random_number = random.randint(1, 100)
+        print("A random number between 1 and 100 has been chosen.")
+
+        def input_the_number():
+            guessed_number = int(input("> "))
+
+            if guessed_number > random_number:
+                print("Wrong number. Too high.")
+                input_the_number()
+            elif guessed_number < random_number:
+                print("Wrong number. Too low.")
+                input_the_number()
+            else:
+                print("You successfully guessed the number!")
+        
+        input_the_number()
+    elif chosen_game == "b":
+        print("Welcome to the personality quiz.")
+        print("Here we will be seeing if you're a glorpus or a gooboo.")
+
+        def quiz():
+            """A function for the quiz in case the person wants to do it again and again"""
+
+            # the glorpus is gentle and kind and loving
+            glorpus_points = 0
+            # the gooboo cares a lot about appearances and being seen as good
+            gooboo_points = 0
+
+            # in case you can't tell, this quiz is one big jab towards the gender binary
+
+            print("Which of these is your favorite place to sleep?")
+            print("A. at a friend's house")
+            print("B. in my own bed")
+            print("C. when I'm dead")
+            print("D. on the floor of the cafeteria")
+
+            answer1 = input("> ")
+            answer1 = answer1.strip()
+            answer1 = answer1.lower()
+
+            if answer1 == "a":
+                glorpus_points += 1
+            elif answer1 == "b":
+                gooboo_points += 1
+            elif answer1 == "c":
+                gooboo_points += 1
+            elif answer1 == "d":
+                glorpus_points += 1
+
+            print("Where do you want to go to brunch?")
+            print("A. wherever my friends wanna go")
+            print("B. nowhere")
+            print("C. the cemetery")
+            print("D. somewhere with pancakes")
+
+            answer2 = input("> ")
+            answer2 = answer2.strip()
+            answer2 = answer2.lower()
+
+            if answer2 == "a":
+                gooboo_points += 1 
+            elif answer2 == "b":
+                glorpus_points += 1 
+            elif answer2 == "c":
+                glorpus_points += 1
+            elif answer3 == "d":
+                gooboo_points += 1
+            
+            print("Which of these is most likely?")
+            print("A. the existence of a god or gods")
+            print("B. magic existing")
+            print("C. the world blowing up in three days")
+            print("D. me getting a good job")
+
+            answer3 = input("> ")
+            answer3 = answer3.strip()
+            answer3 = answer3.lower()
+
+            if answer3 == "a":
+                gooboo_points += 1 
+            elif answer3 == "b":
+                glorpus_points += 1 
+            elif answer3 == "c":
+                glorpus_points += 1
+            elif answer3 == "d":
+                gooboo_points += 1
+
+            print("Pick a taste")
+            print("A. sweet")
+            print("B. sour")
+            print("C. spicy")
+            print("D. tangy")
+
+            answer4 = input("> ")
+            answer4 = answer4.strip()
+            answer4 = answer4.lower()
+
+            if answer4 == "a":
+                gooboo_points += 1
+            elif answer4 == "b":
+                glorpus_points += 1
+            elif answer4 == "c":
+                gooboo_points += 1
+            elif answer4 == "d":
+                glorpus_points += 1
+
+            print("Glorpus points: " + str(glorpus_points))
+            print("Gooboo points: " + str(gooboo_points))
+
+            if glorpus_points > gooboo_points:
+                print("You are a glorpus!")
+                print("This means you are gentle, kind, and authentic.")
+            elif glorpus_points < gooboo_points:
+                print("You are a glooboo!")
+                print("This means you care a lot about being seen as a good and acceptable person.")
+            elif glorpus_points == gooboo_points:
+                print("You got a tie!")
+
+            print("Do you wanna do the quiz again? y/n")
+
+            do_quiz_again = input("> ")
+            do_quiz_again = do_quiz_again.strip()
+            do_quiz_again = do_quiz_again.lower()
+
+            if do_quiz_again == "y":
+                quiz()
+
+        quiz()
+
 def fishing():
     """Has interactions for going fishing"""
 
@@ -207,7 +350,8 @@ def main_actions():
     print("B. go fishing")
     print("C. check inventory")
     print("D. go to home")
-    print("E. quit game")
+    print("E. play on tablet")
+    print("F. quit game")
 
     what_to_do = input("> ")
     what_to_do = what_to_do.strip()
@@ -234,6 +378,10 @@ def main_actions():
         interactions += 1
         check_if_full_day()
     elif what_to_do == "e":
+        tablet()
+        interactions += 1
+        check_if_full_day()
+    elif what_to_do == "f":
         print("Interactions today: " + str(interactions))
         print("Full days played: " + str(days))
         sys.exit()
