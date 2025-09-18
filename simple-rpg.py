@@ -136,7 +136,7 @@ def garden():
             print("None of your plants can be harvested right now.")
         else:
             print("You harvest your plants.")
-            print("You get " + plants + " fruits.")
+            print("You get " + str(plants) + " fruits.")
 
             inventory["Fruit"] += 1
     elif garden_action == "c":
