@@ -199,6 +199,8 @@ def check_inventory():
     print("Fruits: " + str(inventory["Fruit"]))
     print("Fish: " + str(inventory["Fish"]))
 
+    main_actions()
+
 def main_actions():
     print("What would you like to do? ")
     print("A. go to garden")
