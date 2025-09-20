@@ -22,6 +22,7 @@ potted_plant_amount = 0
 inventory = {
     "Fruit": 0,
     "Fish": 0,
+    "Wood": 0
 }
 
 def update():
@@ -248,6 +249,7 @@ def wood_chopping():
         trees_chopped = int(trees_chopped)
 
     wood_gotten = trees_chopped * random.randint(4, 6)
+    inventory["Wood"] += wood_gotten
 
     print("You got " + str(wood_gotten) + " logs of wood.")
     print("You also make sure to replant at least most of the trees.")
@@ -361,6 +363,7 @@ def check_inventory():
 
     print("Fruits: " + str(inventory["Fruit"]))
     print("Fish: " + str(inventory["Fish"]))
+    print("Wood: " str(inventory["Wood"]))
 
     main_actions()
 
