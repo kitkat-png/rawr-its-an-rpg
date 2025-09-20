@@ -232,6 +232,26 @@ def tablet():
 
         quiz()
 
+def wood_chopping():
+    """Has interactions for chopping wood"""
+
+    print("You go to the forest to get some wood.")
+    print("How many trees will you chop down? (choose 1-4)")
+    trees_chopped = input("> ")
+    trees_chopped = trees_chopped.strip()
+    trees_chopped = int(trees_chopped)
+
+    while trees_chopped > 4 or trees_chopped < 0:
+        print("Choose a valid 1-4 number.")
+        trees_chopped = input("> ")
+        trees_chopped = trees_chopped.strip()
+        trees_chopped = int(trees_chopped)
+
+    wood_gotten = trees_chopped * random.randint(4, 6)
+
+    print("You got " + str(wood_gotten) + " logs of wood.")
+    print("You also make sure to replant at least most of the trees.")
+
 def fishing():
     """Has interactions for going fishing"""
 
@@ -351,7 +371,8 @@ def main_actions():
     print("C. check inventory")
     print("D. go to home")
     print("E. play on tablet")
-    print("F. quit game")
+    print("F. chop wood")
+    print("G. quit game")
 
     what_to_do = input("> ")
     what_to_do = what_to_do.strip()
@@ -382,6 +403,11 @@ def main_actions():
         interactions += 1
         check_if_full_day()
     elif what_to_do == "f":
+        animal_interaction()
+        wood_chopping()
+        interactions += 1
+        check_if_full_day()
+    elif what_to_do == "g":
         print("Interactions today: " + str(interactions))
         print("Full days played: " + str(days))
         sys.exit()
