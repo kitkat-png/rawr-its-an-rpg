@@ -1,4 +1,5 @@
-import random 
+import random
+import social
 import sys
 
 # 4 interactions = a full day
@@ -19,11 +20,8 @@ floor = "light wood"
 poster_amount = 0
 potted_plant_amount = 0
 
-inventory = {
-    "Fruit": 0,
-    "Fish": 0,
-    "Wood": 0
-}
+inventory = {"Fruit": 0, "Fish": 0, "Wood": 0}
+
 
 def update():
     """Updates stuff like the garden, used when another day passes"""
@@ -38,7 +36,8 @@ def update():
 
     plants_status = "dry"
 
-    fish_in_river = True    
+    fish_in_river = True
+
 
 def animal_interaction():
     """Makes it so that there's a 1 in 5 chance every time you pick an interaction of you meeting an animal"""
@@ -90,6 +89,7 @@ def animal_interaction():
         elif interact_with_animal == "c":
             print("You ignore the " + which_animal + " and move on.")
 
+
 def tablet():
     """Has interactions for playing on your tablet (aka minigames)"""
 
@@ -118,7 +118,7 @@ def tablet():
                 input_the_number()
             else:
                 print("You successfully guessed the number!")
-        
+
         input_the_number()
     elif chosen_game == "b":
         print("Welcome to the personality quiz.")
@@ -164,14 +164,14 @@ def tablet():
             answer2 = answer2.lower()
 
             if answer2 == "a":
-                gooboo_points += 1 
+                gooboo_points += 1
             elif answer2 == "b":
-                glorpus_points += 1 
+                glorpus_points += 1
             elif answer2 == "c":
                 glorpus_points += 1
-            elif answer3 == "d":
+            elif answer2 == "d":
                 gooboo_points += 1
-            
+
             print("Which of these is most likely?")
             print("A. the existence of a god or gods")
             print("B. magic existing")
@@ -183,9 +183,9 @@ def tablet():
             answer3 = answer3.lower()
 
             if answer3 == "a":
-                gooboo_points += 1 
+                gooboo_points += 1
             elif answer3 == "b":
-                glorpus_points += 1 
+                glorpus_points += 1
             elif answer3 == "c":
                 glorpus_points += 1
             elif answer3 == "d":
@@ -218,7 +218,9 @@ def tablet():
                 print("This means you are gentle, kind, and authentic.")
             elif glorpus_points < gooboo_points:
                 print("You are a glooboo!")
-                print("This means you care a lot about being seen as a good and acceptable person.")
+                print(
+                    "This means you care a lot about being seen as a good and acceptable person."
+                )
             elif glorpus_points == gooboo_points:
                 print("You got a tie!")
 
@@ -232,6 +234,7 @@ def tablet():
                 quiz()
 
         quiz()
+
 
 def wood_chopping():
     """Has interactions for chopping wood"""
@@ -254,12 +257,13 @@ def wood_chopping():
     print("You got " + str(wood_gotten) + " logs of wood.")
     print("You also make sure to replant at least most of the trees.")
 
+
 def fishing():
     """Has interactions for going fishing"""
 
     print("You go to the river to fish.")
 
-    global fish_in_river 
+    global fish_in_river
 
     if fish_in_river:
         fish_amount = random.randint(1, 5)
@@ -268,6 +272,7 @@ def fishing():
         fish_in_river = False
     else:
         print("There aren't any fish in the river.")
+
 
 def garden():
     """Has interactions for going to the garden"""
@@ -311,16 +316,17 @@ def garden():
         print("You plant " + how_many_plants + " new plants.")
         plants += int(how_many_plants)
 
+
 def home_decor():
     """Has interactions for going home and checking out your decor"""
 
     print("You go home and take a look at how you've got things set up.")
 
-    global wall_color 
-    global floor 
-    global poster_amount 
+    global wall_color
+    global floor
+    global poster_amount
     global potted_plant_amount
-    
+
     print("The wall color is " + wall_color + ".")
     print("The floor is made up of " + floor + ".")
     print("There are " + str(poster_amount) + " posters on the walls.")
@@ -348,7 +354,7 @@ def home_decor():
     elif change == "d":
         print("How many potted plants do you want?")
         potted_plant_amount = int(input("> "))
-        
+
     print("Would you like to change anything else?")
     print("y/n")
     keep_changing = input("> ")
@@ -358,14 +364,16 @@ def home_decor():
     if keep_changing == "y":
         home_decor()
 
+
 def check_inventory():
     """Displays inventory information"""
 
     print("Fruits: " + str(inventory["Fruit"]))
     print("Fish: " + str(inventory["Fish"]))
-    print("Wood: " str(inventory["Wood"]))
+    print("Wood: " + str(inventory["Wood"]))
 
     main_actions()
+
 
 def main_actions():
     print("What would you like to do? ")
@@ -375,7 +383,8 @@ def main_actions():
     print("D. go to home")
     print("E. play on tablet")
     print("F. chop wood")
-    print("G. quit game")
+    print("G. go socialize")
+    print("H. quit game")
 
     what_to_do = input("> ")
     what_to_do = what_to_do.strip()
@@ -411,9 +420,15 @@ def main_actions():
         interactions += 1
         check_if_full_day()
     elif what_to_do == "g":
+        animal_interaction()
+        social.socialize()
+        interactions += 1
+        check_if_full_day()
+    elif what_to_do == "h":
         print("Interactions today: " + str(interactions))
         print("Full days played: " + str(days))
         sys.exit()
+
 
 def check_if_full_day():
     global interactions
@@ -427,5 +442,6 @@ def check_if_full_day():
         main_actions()
     else:
         main_actions()
+
 
 main_actions()
