@@ -302,7 +302,7 @@ def garden():
             print("Your plants have already been watered today.")
     elif garden_action == "b":
         # if the plants can be harvested we harvest them
-        if plants_harvestable == False:
+        if not plants_harvestable:
             print("None of your plants can be harvested right now.")
         else:
             print("You harvest your plants.")
